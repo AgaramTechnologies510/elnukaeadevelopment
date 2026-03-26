@@ -1,0 +1,583 @@
+package com.agaram.eln.primary.fetchmodel.getorders;
+
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import com.agaram.eln.primary.model.instrumentDetails.LSOrdernotification;
+import com.agaram.eln.primary.model.instrumentDetails.LsAutoregister;
+import com.agaram.eln.primary.model.material.Elnmaterial;
+import com.agaram.eln.primary.model.sample.Sample;
+import com.agaram.eln.primary.model.sheetManipulation.LSfile;
+import com.agaram.eln.primary.model.sheetManipulation.LSsamplemaster;
+import com.agaram.eln.primary.model.sheetManipulation.LStestmasterlocal;
+import com.agaram.eln.primary.model.sheetManipulation.LSworkflow;
+import com.agaram.eln.primary.model.usermanagement.LSprojectmaster;
+import com.agaram.eln.primary.model.usermanagement.LSuserMaster;
+
+public class LogilabOrdermastersh implements Comparable<LogilabOrdermastersh> {
+	private Long bc;
+	private String bi;
+	List<LSworkflow> lw;
+	private Integer wc;
+	private boolean cp;
+	private String tn;
+	private String fn;
+	private String pn;
+	private String sn;
+	private Integer ft;
+	private String of;
+	private Date ct;
+	private Date cot;
+	private LSworkflow lsw;
+	private String kw;
+	private Integer oc;
+	private Integer fc;
+	private LSuserMaster at;
+	private Integer vo;
+	private LSuserMaster cb;
+	private Integer tc;
+	private Integer as;
+	private LSOrdernotification on;
+	private Integer os;
+	private Boolean r;
+	private LsAutoregister ar;
+	private Boolean sfa;
+	private String aa;
+	private Integer arc;
+	private String mn;
+	private String loc;
+	private Long ase;
+	private Long sse;
+	private Long pse;
+	private Long tse;
+	private Long ose;
+	private String sid;
+	private Boolean ts;
+	private Date modifieddate;
+	private String tle;
+	private Integer site;
+	private Integer ap;
+	private Integer svno;
+	private LSworkflow prevwfw;
+	private Integer wau;
+
+	public LogilabOrdermastersh(Long batchcode, String batchid, LSworkflow lsworkflow, String testname, LSfile lsfile,
+			Sample sample, LSprojectmaster lsprojectmaster, Integer filetype, String orderflag,
+			LSuserMaster assignedto, Date createdtimestamp, Date completedtimestamp, String keyword,
+			LStestmasterlocal lstestmasterlocal, Integer ordercancell, Integer viewoption, LSuserMaster lsuserMaster,
+			Integer testcode, Integer approvelstatus, LSOrdernotification lsordernotification, Integer ordersaved,
+			Boolean repeat, LsAutoregister lsautoregisterorders, Boolean sentforapprovel, String approvelaccept,
+			Integer autoregistercount, Elnmaterial elnmaterial, String lockedusername, Long applicationsequence,
+			Long sitesequence, Long projectsequence, Long tasksequence, Long ordertypesequence,String sequenceid,
+			Boolean teamselected,Date modifieddate,String tittle,Integer sitecode,Integer approved,Integer sheetversionno,LSworkflow previousapprovedworkflow,Integer workflowapprovedusercode) {
+		
+		this.bc = batchcode;
+		this.bi = batchid;
+		this.wc = lsworkflow != null ? lsworkflow.getWorkflowcode() : null;
+		this.tn = lstestmasterlocal != null ? lstestmasterlocal.getTestname() : testname;
+		this.fn = lsfile != null ? lsfile.getFilenameuser() : null;
+		this.pn = lsprojectmaster != null ? lsprojectmaster.getProjectname() : null;
+		this.sn = sample != null ? sample.getSamplename() : null;
+		this.ft = filetype;
+		this.fc = lsfile != null ? lsfile.getFilecode() : -1;
+		this.of = orderflag;
+		this.ct = createdtimestamp;
+		this.cot = completedtimestamp;
+		this.kw = keyword;
+		this.lsw = lsworkflow != null ? new LSworkflow(lsworkflow.getWorkflowcode(), lsworkflow.getWorkflowname(),lsworkflow.getSelfapproval())
+				: null;
+		this.oc = ordercancell;
+		this.at = assignedto;
+		this.tc = testcode;
+		this.vo = viewoption;
+		this.cb = lsuserMaster;
+		this.as = approvelstatus;
+		this.on = lsordernotification;
+		this.os = ordersaved;
+		this.r = repeat;
+		this.ar = lsautoregisterorders;
+		this.sfa = sentforapprovel;
+		this.aa = approvelaccept;
+		this.arc = autoregistercount;
+		this.mn = elnmaterial != null ? elnmaterial.getSmaterialname() : null;
+		this.loc = lockedusername;
+		this.ase = applicationsequence;
+		this.sse = sitesequence;
+		this.pse = projectsequence;
+		this.tse = tasksequence;
+		this.ose = ordertypesequence;
+		this.sid = sequenceid;
+		this.ts = teamselected;
+		this.modifieddate=modifieddate;
+		this.tle=tittle;
+		this.site=sitecode;
+		this.ap=approved;
+		this.svno = sheetversionno != null ? sheetversionno : null;
+		this.prevwfw= previousapprovedworkflow;
+		this.wau =workflowapprovedusercode;
+	}
+
+	public LSworkflow getPrevwfw() {
+		return prevwfw;
+	}
+
+	public void setPrevwfw(LSworkflow prevwfw) {
+		this.prevwfw = prevwfw;
+	}
+
+	public Integer getWau() {
+		return wau;
+	}
+
+	public void setWau(Integer wau) {
+		this.wau = wau;
+	}
+
+	public void setLw(List<LSworkflow> lw) {
+		this.lw = lw;
+	}
+
+	public Integer getSvno() {
+		return svno;
+	}
+
+	public void setSvno(Integer svno) {
+		this.svno = svno;
+	}
+
+	public Integer getSite() {
+		return site;
+	}
+
+	public void setSite(Integer site) {
+		this.site = site;
+	}
+
+	public String getTle() {
+		return tle;
+	}
+
+	public void setTle(String tle) {
+		this.tle = tle;
+	}
+
+	public Date getModifieddate() {
+		return modifieddate;
+	}
+	public void setModifieddate(Date modifieddate) {
+		this.modifieddate = modifieddate;
+	}
+	public String getLoc() {
+		return loc;
+	}
+
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+
+	public Long getBc() {
+		return bc;
+	}
+
+	public void setBc(Long bc) {
+		this.bc = bc;
+	}
+
+	public String getBi() {
+		if (this.bi != null) {
+			return this.bi;
+		} else {
+			String Batchid = "ELN" + this.bc;
+
+			if (this.ft == 3) {
+				Batchid = "RESEARCH" + this.bc;
+			} else if (this.ft == 4) {
+				Batchid = "EXCEL" + this.bc;
+			} else if (this.ft == 5) {
+				Batchid = "VALIDATE" + this.bc;
+			} else if (this.ft == 0) {
+				Batchid = bi;
+			}
+			return Batchid;
+		}
+	}
+
+	public void setBi(String bi) {
+		this.bi = bi;
+	}
+
+	public List<LSworkflow> getLw() {
+		return lw;
+	}
+
+//	public void setLw(List<LSworkflow> lstworkflow, List<LSworkflow> workflowobj,LSuserMaster user) {
+//		if (lstworkflow != null && this.wc != null && lstworkflow.size() > 0) {
+//			// if(lstworkflow.contains(this.lsworkflow))
+//
+//			List<Integer> lstworkflowcode = new ArrayList<Integer>();
+//			if (lstworkflow != null && lstworkflow.size() > 0) {
+//				lstworkflowcode = lstworkflow.stream().map(LSworkflow::getWorkflowcode).collect(Collectors.toList());
+//
+//				if (lstworkflowcode.contains(this.wc)) {
+//				      int previousworkflowIndex = this.getPrevwfw() !=null  ? workflowobj.findIndex((obj) => obj.workflowcode == this.getPrevwfw().getWorkflowcode()) : null;
+//				      int currentworkflowIndex = this.getWc() != null ? this.wc.findIndex((obj) => obj.workflowcode == this.getWc()) : null;
+//				      if ((this.getLsw().getSelfapproval())) {
+//				    	  this.setCp(true);
+//				      } else if ((!this.getLsw().getSelfapproval()) &&
+//				        (((this.getWau() != null && this.getWau() == user.getUsercode() && previousworkflowIndex + 1 != currentworkflowIndex) || (this.getWau() != null && this.getWau() != user.getUsercode()))
+//				          || (previousworkflowIndex == -1  || this.getWau() === null))) {
+//				    	  this.setCp(true);
+//				      }else {
+//				    	  this.setCp(false);
+//				      }
+//
+//					
+//					
+////					this.setCp(true);
+//				} else {
+//					this.setCp(false);
+//				}
+//			} else {
+//				this.setCp(false);
+//			}
+//		} else {
+//			this.setCp(false);
+//		}
+//		this.lw = null;
+//	}
+
+	public void setLw(List<LSworkflow> lstworkflow, List<LSworkflow> workflowobj, LSuserMaster user) {
+	    if (lstworkflow != null && this.wc != null && !lstworkflow.isEmpty()) {
+	        List<Integer> lstworkflowcode = lstworkflow.stream()
+	                .map(LSworkflow::getWorkflowcode)
+	                .collect(Collectors.toList());
+
+	        if (lstworkflowcode.contains(this.wc)) {
+	            int previousworkflowIndex = -1;
+	            if (this.getPrevwfw() != null) {
+	                previousworkflowIndex = IntStream.range(0, workflowobj.size())
+	                        .filter(i -> workflowobj.get(i).getWorkflowcode() == this.getPrevwfw().getWorkflowcode())
+	                        .findFirst()
+	                        .orElse(-1);
+	            }
+	            int currentworkflowIndex = -1;
+	            if (this.getWc() != null) {
+	                currentworkflowIndex = IntStream.range(0, workflowobj.size())
+	                        .filter(i -> workflowobj.get(i).getWorkflowcode() == this.getWc())
+	                        .findFirst()
+	                        .orElse(-1);
+	            }
+	            boolean selfapproval = false;
+	            if (this.getLsw() != null && Boolean.TRUE.equals(this.getLsw().getSelfapproval())) {
+	                selfapproval = true;
+	            } else if (this.getLsw() != null && Boolean.FALSE.equals(this.getLsw().getSelfapproval())) {
+	                Integer wau = this.getWau();
+	                int usercode = user != null ? user.getUsercode() : -1;
+
+	                if (((wau != null && wau == usercode && (this.ap !=null && this.ap ==2 ? previousworkflowIndex - 1 != currentworkflowIndex: previousworkflowIndex + 1 != currentworkflowIndex))
+	                        || (wau != null && wau != usercode))
+	                        || (previousworkflowIndex == -1 || wau == null)) {
+	                    selfapproval = true;
+	                }
+	            }
+	            this.setCp(selfapproval);
+	        } else {
+	            this.setCp(false);
+	        }
+	    } else {
+	        this.setCp(false);
+	    }
+
+	    this.lw = null;
+	}
+
+	
+	
+	public Integer getWc() {
+		return wc;
+	}
+
+	public void setWc(Integer wc) {
+		this.wc = wc;
+	}
+
+	public boolean isCp() {
+		return cp;
+	}
+
+	public void setCp(boolean cp) {
+		this.cp = cp;
+	}
+
+	public String getTn() {
+		return tn;
+	}
+
+	public void setTn(String tn) {
+		this.tn = tn;
+	}
+
+	public String getFn() {
+		return fn;
+	}
+
+	public void setFn(String fn) {
+		this.fn = fn;
+	}
+
+	public String getPn() {
+		return pn;
+	}
+
+	public void setPn(String pn) {
+		this.pn = pn;
+	}
+
+	public String getSn() {
+		return sn;
+	}
+
+	public void setSn(String sn) {
+		this.sn = sn;
+	}
+
+	public Integer getFt() {
+		return ft;
+	}
+
+	public void setFt(Integer ft) {
+		this.ft = ft;
+	}
+
+	public String getOf() {
+		return of;
+	}
+
+	public void setOf(String of) {
+		this.of = of;
+	}
+
+	public Date getCt() {
+		return ct;
+	}
+
+	public void setCt(Date ct) {
+		this.ct = ct;
+	}
+
+	public Date getCot() {
+		return cot;
+	}
+
+	public void setCot(Date cot) {
+		this.cot = cot;
+	}
+
+	public LSworkflow getLsw() {
+		return lsw;
+	}
+
+	public void setLsw(LSworkflow lsw) {
+		this.lsw = lsw;
+	}
+
+	public String getKw() {
+		return kw;
+	}
+
+	public void setKw(String kw) {
+		this.kw = kw;
+	}
+
+	public Integer getOc() {
+		return oc;
+	}
+
+	public void setOc(Integer oc) {
+		this.oc = oc;
+	}
+
+	public Integer getFc() {
+		return fc;
+	}
+
+	public void setFc(Integer fc) {
+		this.fc = fc;
+	}
+
+	public LSuserMaster getAt() {
+		return at;
+	}
+
+	public void setAt(LSuserMaster at) {
+		this.at = at;
+	}
+
+	public Integer getVo() {
+		return vo;
+	}
+
+	public void setVo(Integer vo) {
+		this.vo = vo;
+	}
+
+	public LSuserMaster getCb() {
+		return cb;
+	}
+
+	public void setCb(LSuserMaster cb) {
+		this.cb = cb;
+	}
+
+	public Integer getTc() {
+		return tc;
+	}
+
+	public void setTc(Integer tc) {
+		this.tc = tc;
+	}
+
+	public Integer getAs() {
+		return as;
+	}
+
+	public void setAs(Integer as) {
+		this.as = as;
+	}
+
+	public LSOrdernotification getOn() {
+		return on;
+	}
+
+	public void setOn(LSOrdernotification on) {
+		this.on = on;
+	}
+
+	public Integer getOs() {
+		return os;
+	}
+
+	public void setOs(Integer os) {
+		this.os = os;
+	}
+
+	public Boolean getR() {
+		return r;
+	}
+
+	public void setR(Boolean r) {
+		this.r = r;
+	}
+
+	public LsAutoregister getAr() {
+		return ar;
+	}
+
+	public void setAr(LsAutoregister ar) {
+		this.ar = ar;
+	}
+
+	public Boolean getSfa() {
+		return sfa;
+	}
+
+	public void setSfa(Boolean sfa) {
+		this.sfa = sfa;
+	}
+
+	public String getAa() {
+		return aa;
+	}
+
+	public void setAa(String aa) {
+		this.aa = aa;
+	}
+
+	public Integer getArc() {
+		return arc;
+	}
+
+	public void setArc(Integer arc) {
+		this.arc = arc;
+	}
+
+	public String getMn() {
+		return mn;
+	}
+
+	public void setMn(String mn) {
+		this.mn = mn;
+	}
+	
+	public Long getAse() {
+		return ase;
+	}
+
+	public void setAse(Long ase) {
+		this.ase = ase;
+	}
+
+	public Long getSse() {
+		return sse;
+	}
+
+	public void setSse(Long sse) {
+		this.sse = sse;
+	}
+
+	public Long getPse() {
+		return pse;
+	}
+
+	public void setPse(Long pse) {
+		this.pse = pse;
+	}
+
+	public Long getTse() {
+		return tse;
+	}
+
+	public void setTse(Long tse) {
+		this.tse = tse;
+	}
+
+	public Long getOse() {
+		return ose;
+	}
+
+	public void setOse(Long ose) {
+		this.ose = ose;
+	}
+	
+	public String getSid() {
+		return sid;
+	}
+
+	public void setSid(String sid) {
+		this.sid = sid;
+	}
+
+	@Override
+	public int compareTo(LogilabOrdermastersh o) {
+		return this.getBc().compareTo(o.getBc());
+	}
+
+	public Boolean getTs() {
+		return ts;
+	}
+
+	public void setTs(Boolean ts) {
+		this.ts = ts;
+	}
+
+	public Integer getAp() {
+		return ap;
+	}
+
+	public void setAp(Integer ap) {
+		this.ap = ap;
+	}
+	
+}

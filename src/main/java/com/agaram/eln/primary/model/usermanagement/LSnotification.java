@@ -1,0 +1,154 @@
+package com.agaram.eln.primary.model.usermanagement;
+
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+
+@Entity
+@Table(name = "LSnotification")
+public class LSnotification {
+
+	@Id
+	@SequenceGenerator(name = "lsnotification_seq", sequenceName = "lsnotification_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lsnotification_seq")
+	@Column(name = "notificationcode")
+	private Long notificationcode;
+	
+	@Column(columnDefinition = "varchar(120)")
+	private String notification;
+	
+	@ManyToOne
+	private LSuserMaster notifationto;
+	
+	@ManyToOne
+	private LSuserMaster notifationfrom;
+	
+	@Column(columnDefinition = "varchar(400)")
+	private String notificationdetils;
+	
+	@Column(columnDefinition = "varchar(400)")
+	private String notificationpath;
+	
+	private int isnewnotification;
+	
+	private int notificationfor;
+	
+	@Column(name = "CreatedTimeStamp")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date notificationdate;
+	
+	@Column(name = "repositorydatacode")
+	private Integer repositorydatacode;
+	
+	@Column(name = "repositorycode")
+	private Integer repositorycode;
+	
+	private Integer sitecode;
+
+	public Integer getSitecode() {
+		return sitecode;
+	}
+
+	public void setSitecode(Integer sitecode) {
+		this.sitecode = sitecode;
+	}
+
+	public Integer getRepositorydatacode() {
+		return repositorydatacode;
+	}
+
+	public Integer getRepositorycode() {
+		return repositorycode;
+	}
+
+	public void setRepositorydatacode(Integer repositorydatacode) {
+		this.repositorydatacode = repositorydatacode;
+	}
+
+	public void setRepositorycode(Integer repositorycode) {
+		this.repositorycode = repositorycode;
+	}
+
+	public Long getNotificationcode() {
+		return notificationcode;
+	}
+
+	public void setNotificationcode(Long notificationcode) {
+		this.notificationcode = notificationcode;
+	}
+
+	public String getNotification() {
+		return notification;
+	}
+
+	public void setNotification(String notification) {
+		this.notification = notification;
+	}
+
+	public LSuserMaster getNotifationto() {
+		return notifationto;
+	}
+
+	public void setNotifationto(LSuserMaster notifationto) {
+		this.notifationto = notifationto;
+	}
+
+	public LSuserMaster getNotifationfrom() {
+		return notifationfrom;
+	}
+
+	public void setNotifationfrom(LSuserMaster notifationfrom) {
+		this.notifationfrom = notifationfrom;
+	}
+
+	public String getNotificationdetils() {
+		return notificationdetils;
+	}
+
+	public void setNotificationdetils(String notificationdetils) {
+		this.notificationdetils = notificationdetils;
+	}
+
+	public String getNotificationpath() {
+		return notificationpath;
+	}
+
+	public void setNotificationpath(String notificationpath) {
+		this.notificationpath = notificationpath;
+	}
+
+	public int getIsnewnotification() {
+		return isnewnotification;
+	}
+
+	public void setIsnewnotification(int isnewnotification) {
+		this.isnewnotification = isnewnotification;
+	}
+
+	public Date getNotificationdate() {
+		return notificationdate;
+	}
+
+	public void setNotificationdate(Date notificationdate) {
+		this.notificationdate = notificationdate;
+	}
+
+	public int getNotificationfor() {
+		return notificationfor;
+	}
+
+	public void setNotificationfor(int notificationfor) {
+		this.notificationfor = notificationfor;
+	}
+
+	
+}

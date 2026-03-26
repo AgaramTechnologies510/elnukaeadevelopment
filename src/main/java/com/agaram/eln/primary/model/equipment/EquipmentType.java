@@ -1,0 +1,206 @@
+package com.agaram.eln.primary.model.equipment;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import com.agaram.eln.primary.model.cfr.LScfttransaction;
+import com.agaram.eln.primary.model.usermanagement.LSuserMaster;
+
+@Entity
+@Table(name = "equipmenttype")
+public class EquipmentType implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "nequipmenttypecode")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "equipmenttype_nequipmenttypecode_seq")
+	@SequenceGenerator(name = "equipmenttype_nequipmenttypecode_seq", sequenceName = "equipmenttype_nequipmenttypecode_seq", allocationSize = 1)
+	private Integer nequipmenttypecode;
+
+	@JdbcTypeCode(SqlTypes.JSON)
+	@Column(name = "jsondata", columnDefinition = "jsonb")	private String jsondata;
+
+	@ColumnDefault("4")
+	@Column(name = "ndefaultstatus", nullable = false)private Integer ndefaultstatus = 4;
+
+	@ColumnDefault("-1")
+	@Column(name = "nsitecode", nullable = false)private Integer nsitecode = -1;
+
+	@ColumnDefault("1")
+	@Column(name = "nstatus", nullable = false)	private Integer nstatus = 1;
+	
+	@Transient
+	private String displaystatus;
+
+	@Transient
+	private LScfttransaction objsilentaudit;
+	
+	@Transient
+	private LScfttransaction objmanualaudit;
+	
+	private String sequipmenttypename;
+	
+	@ManyToOne
+	private LSuserMaster createby;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdate;
+
+	private transient String sDate;
+	private transient String mDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifieddate;
+	
+	@Column(name = "modifiedby")
+	private String modifiedby;
+	
+	public String getmDate() {
+		return mDate;
+	}
+	public void setmDate(String mDate) {
+		this.mDate = mDate;
+	}
+	public String getModifiedby() {
+		return modifiedby;
+	}
+	public void setModifiedby(String modifiedby) {
+		this.modifiedby = modifiedby;
+	}
+	public Date getModifieddate() {
+		return modifieddate;
+	}
+	public void setModifieddate(Date modifieddate) {
+		this.modifieddate = modifieddate;
+	}
+	@Transient
+	public String info;
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public Integer getNequipmenttypecode() {
+		return nequipmenttypecode;
+	}
+
+	public void setNequipmenttypecode(Integer nequipmenttypecode) {
+		this.nequipmenttypecode = nequipmenttypecode;
+	}
+
+	public String getJsondata() {
+		return jsondata;
+	}
+
+	public void setJsondata(String jsondata) {
+		this.jsondata = jsondata;
+	}
+
+	public Integer getNdefaultstatus() {
+		return ndefaultstatus;
+	}
+
+	public void setNdefaultstatus(Integer ndefaultstatus) {
+		this.ndefaultstatus = ndefaultstatus;
+	}
+
+	public Integer getNsitecode() {
+		return nsitecode;
+	}
+
+	public void setNsitecode(Integer nsitecode) {
+		this.nsitecode = nsitecode;
+	}
+
+	public Integer getNstatus() {
+		return nstatus;
+	}
+
+	public void setNstatus(Integer nstatus) {
+		this.nstatus = nstatus;
+	}
+
+	public String getDisplaystatus() {
+		return displaystatus;
+	}
+
+	public void setDisplaystatus(String displaystatus) {
+		this.displaystatus = displaystatus;
+	}
+
+	public LScfttransaction getObjsilentaudit() {
+		return objsilentaudit;
+	}
+
+	public void setObjsilentaudit(LScfttransaction objsilentaudit) {
+		this.objsilentaudit = objsilentaudit;
+	}
+
+	public LScfttransaction getObjmanualaudit() {
+		return objmanualaudit;
+	}
+
+	public void setObjmanualaudit(LScfttransaction objmanualaudit) {
+		this.objmanualaudit = objmanualaudit;
+	}
+
+	public String getSequipmenttypename() {
+		return sequipmenttypename;
+	}
+
+	public void setSequipmenttypename(String sequipmenttypename) {
+		this.sequipmenttypename = sequipmenttypename;
+	}
+
+	public LSuserMaster getCreateby() {
+		return createby;
+	}
+
+	public void setCreateby(LSuserMaster createby) {
+		this.createby = createby;
+	}
+
+	public Date getCreatedate() {
+		return createdate;
+	}
+
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
+
+	public String getsDate() {
+		return sDate;
+	}
+
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+}
