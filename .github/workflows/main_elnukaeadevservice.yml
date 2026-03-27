@@ -60,5 +60,5 @@ jobs:
         with:
           app-name: 'ELNUKAEADEVSERVICE'
           slot-name: 'Production'
-          package: '*.jar'
+          package: '*.war'
           
